@@ -459,12 +459,12 @@ parser.add_argument('tier', metavar='tier/level', type=tier_or_level_arg,
     help="Monster's level (int) or TIER (see above)")
 parser.add_argument('size', metavar='count', type=int,
     help='Number of monsters to appear together')
+parser.add_argument('name', type=str, nargs='?',
+    help='Monster name')
 parser.add_argument('--good', '-g', metavar='STAT', action='append', default=[],
     help='Boost a STAT to good quality (may be specified multiple times)')
 parser.add_argument('--poor', '-p', metavar='STAT', action='append', default=[],
     help='Reduce a STAT to poor quality (may be specified multiple times)')
-parser.add_argument('--name', '-n', type=str,
-    help='Monster name')
 parser.add_argument('--apr', '-a', type=apr_arg, default=1, help='Attacks per round. Must be an int, "area", or "dot" (damage over time)')
 parser.add_argument('--resist', '-r', action='store_true', help='Flag to indicate significant defensive abilities or many resistances')
 
