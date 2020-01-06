@@ -395,7 +395,7 @@ class ResistantAdjustment(AdjustedMonster):
 # Load in statistical data
 # --------------------------
 
-fname = '/usr/local/src/monster_generator/stats.json'
+fname = 'stats.json'
 
 with open(fname, 'r') as fin:
     stats_json_list = json.load(fin)
