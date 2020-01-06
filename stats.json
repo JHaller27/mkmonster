@@ -1,0 +1,541 @@
+[
+    {
+        "tier": "Apprentice",
+        "levels": {
+            "min": 1,
+            "max": 2
+        },
+        "prof": 2,
+        "ac": {
+            "poor": 11,
+            "average": 13,
+            "good": 15
+        },
+        "hp": {
+            "solo": {
+                "poor": 60,
+                "average": 75,
+                "good": 90
+            },
+            "pair": {
+                "poor": 30,
+                "average": 38,
+                "good": 45
+            },
+            "party": {
+                "poor": 18,
+                "average": 23,
+                "good": 27
+            },
+            "gang": {
+                "poor": 11,
+                "average": 13,
+                "good": 16
+            },
+            "mob": {
+                "poor": 5,
+                "average": 7,
+                "good": 8
+            }
+        },
+        "atk": {
+            "poor": 2,
+            "average": 4,
+            "good": 6
+        },
+        "dc": {
+            "poor": 11,
+            "average": 13,
+            "good": 15
+        },
+        "dmg": {
+            "solo": {
+                "poor": 6,
+                "average": 12,
+                "good": 18
+            },
+            "pair": {
+                "poor": 4,
+                "average": 8,
+                "good": 12
+            },
+            "party": {
+                "poor": 3,
+                "average": 5,
+                "good": 8
+            },
+            "gang": {
+                "poor": 2,
+                "average": 3,
+                "good": 5
+            },
+            "mob": {
+                "poor": 1,
+                "average": 2,
+                "good": 3
+            }
+        }
+    },
+    {
+        "tier": "Journeyman",
+        "levels": {
+            "min": 3,
+            "max": 5
+        },
+        "prof": 2,
+        "ac": {
+            "poor": 12,
+            "average": 14,
+            "good": 16
+        },
+        "hp": {
+            "solo": {
+                "poor": 105,
+                "average": 120,
+                "good": 135
+            },
+            "pair": {
+                "poor": 53,
+                "average": 60,
+                "good": 68
+            },
+            "party": {
+                "poor": 32,
+                "average": 36,
+                "good": 41
+            },
+            "gang": {
+                "poor": 18,
+                "average": 21,
+                "good": 24
+            },
+            "mob": {
+                "poor": 9,
+                "average": 11,
+                "good": 12
+            }
+        },
+        "atk": {
+            "poor": 3,
+            "average": 5,
+            "good": 7
+        },
+        "dc": {
+            "poor": 12,
+            "average": 14,
+            "good": 16
+        },
+        "dmg": {
+            "solo": {
+                "poor": 24,
+                "average": 30,
+                "good": 36
+            },
+            "pair": {
+                "poor": 16,
+                "average": 20,
+                "good": 24
+            },
+            "party": {
+                "poor": 10,
+                "average": 13,
+                "good": 15
+            },
+            "gang": {
+                "poor": 6,
+                "average": 8,
+                "good": 9
+            },
+            "mob": {
+                "poor": 3,
+                "average": 4,
+                "good": 5
+            }
+        }
+    },
+    {
+        "tier": "Adventurer",
+        "levels": {
+            "min": 6,
+            "max": 8
+        },
+        "prof": 3,
+        "ac": {
+            "poor": 13,
+            "average": 15,
+            "good": 17
+        },
+        "hp": {
+            "solo": {
+                "poor": 150,
+                "average": 165,
+                "good": 180
+            },
+            "pair": {
+                "poor": 75,
+                "average": 83,
+                "good": 90
+            },
+            "party": {
+                "poor": 45,
+                "average": 50,
+                "good": 54
+            },
+            "gang": {
+                "poor": 26,
+                "average": 29,
+                "good": 32
+            },
+            "mob": {
+                "poor": 13,
+                "average": 14,
+                "good": 16
+            }
+        },
+        "atk": {
+            "poor": 4,
+            "average": 6,
+            "good": 8
+        },
+        "dc": {
+            "poor": 13,
+            "average": 15,
+            "good": 17
+        },
+        "dmg": {
+            "solo": {
+                "poor": 42,
+                "average": 48,
+                "good": 54
+            },
+            "pair": {
+                "poor": 28,
+                "average": 32,
+                "good": 36
+            },
+            "party": {
+                "poor": 18,
+                "average": 20,
+                "good": 23
+            },
+            "gang": {
+                "poor": 11,
+                "average": 12,
+                "good": 14
+            },
+            "mob": {
+                "poor": 5,
+                "average": 6,
+                "good": 7
+            }
+        }
+    },
+    {
+        "tier": "Veteran",
+        "levels": {
+            "min": 9,
+            "max": 11
+        },
+        "prof": 4,
+        "ac": {
+            "poor": 14,
+            "average": 16,
+            "good": 18
+        },
+        "hp": {
+            "solo": {
+                "poor": 195,
+                "average": 210,
+                "good": 225
+            },
+            "pair": {
+                "poor": 98,
+                "average": 105,
+                "good": 113
+            },
+            "party": {
+                "poor": 59,
+                "average": 63,
+                "good": 68
+            },
+            "gang": {
+                "poor": 34,
+                "average": 37,
+                "good": 39
+            },
+            "mob": {
+                "poor": 17,
+                "average": 18,
+                "good": 20
+            }
+        },
+        "atk": {
+            "poor": 5,
+            "average": 7,
+            "good": 9
+        },
+        "dc": {
+            "poor": 14,
+            "average": 16,
+            "good": 18
+        },
+        "dmg": {
+            "solo": {
+                "poor": 60,
+                "average": 66,
+                "good": 72
+            },
+            "pair": {
+                "poor": 40,
+                "average": 44,
+                "good": 48
+            },
+            "party": {
+                "poor": 25,
+                "average": 28,
+                "good": 30
+            },
+            "gang": {
+                "poor": 15,
+                "average": 17,
+                "good": 18
+            },
+            "mob": {
+                "poor": 7,
+                "average": 8,
+                "good": 9
+            }
+        }
+    },
+    {
+        "tier": "Champion",
+        "levels": {
+            "min": 12,
+            "max": 14
+        },
+        "prof": 5,
+        "ac": {
+            "poor": 15,
+            "average": 17,
+            "good": 19
+        },
+        "hp": {
+            "solo": {
+                "poor": 240,
+                "average": 255,
+                "good": 270
+            },
+            "pair": {
+                "poor": 120,
+                "average": 128,
+                "good": 135
+            },
+            "party": {
+                "poor": 72,
+                "average": 77,
+                "good": 81
+            },
+            "gang": {
+                "poor": 42,
+                "average": 45,
+                "good": 47
+            },
+            "mob": {
+                "poor": 21,
+                "average": 22,
+                "good": 24
+            }
+        },
+        "atk": {
+            "poor": 6,
+            "average": 8,
+            "good": 10
+        },
+        "dc": {
+            "poor": 15,
+            "average": 17,
+            "good": 19
+        },
+        "dmg": {
+            "solo": {
+                "poor": 78,
+                "average": 84,
+                "good": 90
+            },
+            "pair": {
+                "poor": 52,
+                "average": 56,
+                "good": 60
+            },
+            "party": {
+                "poor": 33,
+                "average": 35,
+                "good": 38
+            },
+            "gang": {
+                "poor": 20,
+                "average": 21,
+                "good": 23
+            },
+            "mob": {
+                "poor": 9,
+                "average": 10,
+                "good": 11
+            }
+        }
+    },
+    {
+        "tier": "Heroic",
+        "levels": {
+            "min": 15,
+            "max": 17
+        },
+        "prof": 5,
+        "ac": {
+            "poor": 16,
+            "average": 18,
+            "good": 20
+        },
+        "hp": {
+            "solo": {
+                "poor": 285,
+                "average": 300,
+                "good": 315
+            },
+            "pair": {
+                "poor": 143,
+                "average": 150,
+                "good": 158
+            },
+            "party": {
+                "poor": 86,
+                "average": 90,
+                "good": 95
+            },
+            "gang": {
+                "poor": 50,
+                "average": 53,
+                "good": 55
+            },
+            "mob": {
+                "poor": 25,
+                "average": 26,
+                "good": 28
+            }
+        },
+        "atk": {
+            "poor": 7,
+            "average": 9,
+            "good": 11
+        },
+        "dc": {
+            "poor": 16,
+            "average": 18,
+            "good": 20
+        },
+        "dmg": {
+            "solo": {
+                "poor": 96,
+                "average": 102,
+                "good": 108
+            },
+            "pair": {
+                "poor": 64,
+                "average": 68,
+                "good": 72
+            },
+            "party": {
+                "poor": 40,
+                "average": 43,
+                "good": 45
+            },
+            "gang": {
+                "poor": 24,
+                "average": 26,
+                "good": 27
+            },
+            "mob": {
+                "poor": 12,
+                "average": 13,
+                "good": 14
+            }
+        }
+    },
+    {
+        "tier": "Legendary",
+        "levels": {
+            "min": 18,
+            "max": 20
+        },
+        "prof": 6,
+        "ac": {
+            "poor": 17,
+            "average": 19,
+            "good": 21
+        },
+        "hp": {
+            "solo": {
+                "poor": 330,
+                "average": 345,
+                "good": 360
+            },
+            "pair": {
+                "poor": 165,
+                "average": 173,
+                "good": 180
+            },
+            "party": {
+                "poor": 99,
+                "average": 104,
+                "good": 108
+            },
+            "gang": {
+                "poor": 58,
+                "average": 60,
+                "good": 63
+            },
+            "mob": {
+                "poor": 29,
+                "average": 30,
+                "good": 32
+            }
+        },
+        "atk": {
+            "poor": 8,
+            "average": 10,
+            "good": 12
+        },
+        "dc": {
+            "poor": 17,
+            "average": 19,
+            "good": 21
+        },
+        "dmg": {
+            "solo": {
+                "poor": 114,
+                "average": 120,
+                "good": 126
+            },
+            "pair": {
+                "poor": 76,
+                "average": 80,
+                "good": 84
+            },
+            "party": {
+                "poor": 48,
+                "average": 50,
+                "good": 53
+            },
+            "gang": {
+                "poor": 29,
+                "average": 30,
+                "good": 32
+            },
+            "mob": {
+                "poor": 14,
+                "average": 15,
+                "good": 16
+            }
+        }
+    }
+]
