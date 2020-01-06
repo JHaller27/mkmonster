@@ -446,10 +446,17 @@ def apr_arg(arg: str) -> int:
         return 1
 
 
-valid_stats_desc = ', '.join(Monster.THREAT_STATS)
-parser = argparse.ArgumentParser(description=f'STAT values: {valid_stats_desc}')
+valid_stats_desc = ', '.join(map(lambda e: e.upper(), Monster.THREAT_STATS))
+valid_tiers_desc = ', '.join(map(lambda e: e.tier.name, stats))
+
+parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
+    description=(
+        f'STAT values: {valid_stats_desc}\n'
+        f'TIER values: {valid_tiers_desc}\n'
+        f'    (STAT and TIER values are case-insensitive)\n'
+        ))
 parser.add_argument('tier', metavar='tier/level', type=tier_or_level_arg,
-    help="Monster's level (int) or tier (see above)")
+    help="Monster's level (int) or TIER (see above)")
 parser.add_argument('size', metavar='count', type=int,
     help='Number of monsters to appear together')
 parser.add_argument('--good', '-g', metavar='STAT', action='append', default=[],
