@@ -259,34 +259,49 @@ class Monster:
         label_width = 5
         val_width = 3
 
-        hr_side_len = label_width + val_width
+        left_val_width = val_width
+        right_val_width = val_width
+
+        hr_left_len = label_width + val_width
+        total_width = hr_left_len * 2 + len(center_str)
+        hr_right_len = total_width - hr_left_len - len(center_str)
+
+        centered_fmt = f'{{:^{total_width}}}\n'
 
         txt = ''
 
         if self.name is not None:
-            txt += f'{self.name}\n'
-            txt += hr * (hr_side_len * 2 + len(center_str))
+            if len(self.name) > total_width:
+                total_width = len(self.name)
+
+                centered_fmt = f'{{:^{total_width}}}\n'
+
+                hr_left_len = (total_width - len(center_str)) // 2
+                hr_right_len = total_width - hr_left_len - len(center_str)
+
+                left_val_width = hr_left_len - label_width
+                right_val_width = hr_right_len - label_width
+
+            txt += centered_fmt.format(self.name)
+            txt += hr * total_width
             txt += '\n'
 
-        tier_str = str(self.tier)
+
+        tier_str = centered_fmt.format(str(self.tier))
         txt += tier_str
 
-        txt += '\n'
-
-        size_str = self.size_str
+        size_str = centered_fmt.format(self.size_str)
         txt += size_str
 
-        txt += '\n'
-
-        threat_str = f'{self.threat_str}\n'
+        threat_str = centered_fmt.format(self.threat_str)
         txt += threat_str
 
-        txt += hr * hr_side_len
+        txt += hr * hr_left_len
         txt += center_str
-        txt += hr * hr_side_len
+        txt += hr * hr_right_len
         txt += '\n'
 
-        fmt = f'{{:<{label_width}}}{{:>{val_width}}}{vr}{{:<{label_width}}}{{:>{val_width}}}\n'
+        fmt = f'{{:<{label_width}}}{{:>{left_val_width}}}{vr}{{:<{label_width}}}{{:>{right_val_width}}}\n'
 
         txt += fmt.format('Prof:', f'+{self.tier.prof}', 'DC:', f'{self.dc}')
         txt += fmt.format('AC:', f'{self.ac}', 'HP:', f'{self.hp}')
