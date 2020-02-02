@@ -217,8 +217,15 @@ class Monster:
         if self.name is not None:
             txt += f'{self.name}\n'
 
-        tier_str = f'{self.size_str}\n{str(self.tier)}\n'
+        tier_str = str(self.tier)
         txt += tier_str
+
+        txt += '\n'
+
+        size_str = self.size_str
+        txt += size_str
+
+        txt += '\n'
 
         threat_str = f'{self.threat_str}\n'
         txt += threat_str
