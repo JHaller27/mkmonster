@@ -5,18 +5,6 @@ from functools import reduce
 
 # Stat class definitions
 # ------------------------
-class Ref:
-    def __init__(self, wrapped: list):
-        self._ref = wrapped
-
-    def _get_ref(self):
-        return self._ref[0]
-
-    def _set_ref(self, val):
-        self._ref[0] = val
-
-    ref = property(fget=_get_ref, fset=_set_ref)
-
 
 class Stat:
     @classmethod
