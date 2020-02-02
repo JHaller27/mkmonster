@@ -256,10 +256,17 @@ class Monster:
         hr = u'\u2501'
         center_str = u'%s\u252F%s' % (hr, hr)
 
+        label_width = 5
+        val_width = 3
+
+        hr_side_len = label_width + val_width
+
         txt = ''
 
         if self.name is not None:
             txt += f'{self.name}\n'
+            txt += hr * (hr_side_len * 2 + len(center_str))
+            txt += '\n'
 
         tier_str = str(self.tier)
         txt += tier_str
@@ -274,15 +281,10 @@ class Monster:
         threat_str = f'{self.threat_str}\n'
         txt += threat_str
 
-        label_width = 5
-        val_width = 3
-
-        hr_side_len = label_width + val_width
         txt += hr * hr_side_len
         txt += center_str
         txt += hr * hr_side_len
         txt += '\n'
-
 
         fmt = f'{{:<{label_width}}}{{:>{val_width}}}{vr}{{:<{label_width}}}{{:>{val_width}}}\n'
 
