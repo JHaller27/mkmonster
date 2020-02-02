@@ -215,10 +215,10 @@ class Monster:
         if self.name is not None:
             txt += f'{self.name}\n'
 
-        tier_str = f'{str(self.tier)}\n'
+        tier_str = f'{self.size_str}\n{str(self.tier)}\n'
         txt += tier_str
 
-        threat_str = f'{self.threat_str} threat\n'
+        threat_str = f'{self.threat_str}\n'
         txt += threat_str
 
         label_width = 5
@@ -297,17 +297,35 @@ class Monster:
     def threat_str(self) -> str:
         threat = self.threat
         if threat < -3:
-            return 'Trivial'
+            return f'Trivial threat ({threat})'
         elif -3 <= threat <= -2:
-            return 'Low'
+            return f'Low threat ({threat})'
         elif -1 <= threat <= 1:
-            return 'Medium'
+            return f'Medium threat ({threat})'
         elif 2 <= threat <= 3:
-            return 'High'
+            return f'High threat ({threat})'
         elif 3 < threat:
-            return 'Extreme'
+            return f'Extreme threat ({threat})'
         else:
-            return 'Unknown'
+            return f'Unknown threat ({threat})'
+
+    @property
+    def size_str(self) -> str:
+        size = self._size
+        if size < 1:
+            return 'No'
+        elif size == 1:
+            return 'Solo (1x)'
+        elif size == 2:
+            return 'Pair (2x)'
+        elif 3 <= size <= 6:
+            return 'Party (3-6x)'
+        elif 7 <= size <= 10:
+            return 'Gang (7-10x)'
+        elif 11 <= size <= 20:
+            return 'Mob (11-20x)'
+        else:
+            return 'Army (too many)'
 
 
 class AdjustedMonster(Monster):
