@@ -479,7 +479,7 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
         f'TIER values: {valid_tiers_desc}\n'
         f'    (STAT and TIER values are case-insensitive)\n'
         ))
-parser.add_argument('tier', metavar='tier/level', type=tier_or_level_arg,
+parser.add_argument('tier', metavar='tier|level', type=tier_or_level_arg,
     help="Monster's level (int) or TIER (see above)")
 parser.add_argument('size', metavar='count', type=int,
     help='Number of monsters to appear together')
