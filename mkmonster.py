@@ -277,7 +277,8 @@ class Monster:
             return
 
         if self._threats[stat_str] != -1:
-            if base := self._get_base_stat_from_str(stat_str):
+            base = self._get_base_stat_from_str(stat_str)
+            if base is not None:
                 self._set_stat_from_str(stat_str, base.poor)
                 self._threats[stat_str] = -1
 
@@ -286,7 +287,8 @@ class Monster:
             return
 
         if self._threats[stat_str] != 1:
-            if base := self._get_base_stat_from_str(stat_str):
+            base = self._get_base_stat_from_str(stat_str)
+            if base is not None:
                 self._set_stat_from_str(stat_str, base.good)
                 self._threats[stat_str] = 1
 
