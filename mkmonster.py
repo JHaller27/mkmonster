@@ -5,6 +5,46 @@ from functools import reduce
 
 # Stat class definitions
 # ------------------------
+class Count:
+    RANGES = {
+        # Key: Label
+        # Value: Tuple range (inclusive) of valid counts (None is +/-INF)
+        'Solo': (1, 1),
+        'Pair': (2, 2),
+        'Party': (3, 5),
+        'Gang': (7, 10),
+        'Mob': (11, 20),
+        'Army': (21, None)
+    }
+
+    def __init__(self, size_label: str):
+        self._label = size_label
+
+    def __str__(self) -> str:
+        r = Count.RANGES[self._label]
+
+        if r[0] is None:
+            return f'{self._label} (<{r[1]})'
+        elif r[1] is None:
+            return f'{self._label} ({r[0]}+)'
+
+        return f'{self._label} ({r[0]}-{r[1]})'
+
+    @classmethod
+    def from_int(cls, count: int) -> 'Count':
+        for k in Count.RANGES:
+            r = Count.RANGES[k]
+
+            if r[0] is None:
+                r = (count, r[1])
+            if r[1] is None:
+                r = (r[0], count)
+
+            if r[0] <= count <= r[1]:
+                return cls(k)
+
+        return None
+
 
 class Stat:
     @classmethod
@@ -125,6 +165,7 @@ class TierStat(Stat):
 
 class Monster:
     THREAT_STATS = ['ac', 'hp', 'atk', 'dc', 'dmg']
+
     def __init__(self, base_tier: TierStat, size: int, name: str = None):
         self._base_tier = base_tier
         self._size = size
@@ -313,21 +354,16 @@ class Monster:
     @property
     def size_str(self) -> str:
         size = self._size
-        if size < 1:
-            return 'No'
-        elif size == 1:
-            return 'Solo (1x)'
-        elif size == 2:
-            return 'Pair (2x)'
-        elif 3 <= size <= 6:
-            return 'Party (3-6x)'
-        elif 7 <= size <= 10:
-            return 'Gang (7-10x)'
-        elif 11 <= size <= 20:
-            return 'Mob (11-20x)'
-        else:
-            return 'Army (too many)'
+        count = Count.from_int(size)
 
+        if count is None:
+            return 'Uncountable (err)'
+        else:
+            return str(count)
+
+
+# Decorator GoF Pattern Class Definitions
+# ---------------------------------------
 
 class AdjustedMonster(Monster):
     def __init__(self, base: Monster):
