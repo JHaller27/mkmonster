@@ -9,26 +9,34 @@ class Count:
     RANGES = {
         # Key: Label
         # Value: Tuple range (inclusive) of valid counts (None is +/-INF)
-        'Solo': (1, 1),
-        'Pair': (2, 2),
-        'Party': (3, 5),
-        'Gang': (7, 10),
-        'Mob': (11, 20),
-        'Army': (21, None)
+        #        followed by default/average
+        'solo': (1, 1, 1),
+        'pair': (2, 2, 2),
+        'party': (3, 5, 4),
+        'gang': (7, 10, 8),
+        'mob': (11, 20, 16),
+        'army': (21, None, None)
     }
 
-    def __init__(self, size_label: str):
-        self._label = size_label
+    def __init__(self, size_label: str, count: int):
+        self._label = size_label.lower()
+        self._int = count
 
     def __str__(self) -> str:
         r = Count.RANGES[self._label]
+        label = self._label[0].upper() + self._label[1:]
 
         if r[0] is None:
-            return f'{self._label} (<{r[1]})'
+            return f'{label} (<{r[1]})'
         elif r[1] is None:
-            return f'{self._label} ({r[0]}+)'
+            return f'{label} ({r[0]}+)'
+        elif r[0] == r[1]:
+            return f'{label} ({r[0]})'
 
-        return f'{self._label} ({r[0]}-{r[1]})'
+        return f'{label} ({r[0]}-{r[1]})'
+
+    def __int__(self) -> int:
+        return self._int
 
     @classmethod
     def from_int(cls, count: int) -> 'Count':
@@ -41,9 +49,16 @@ class Count:
                 r = (r[0], count)
 
             if r[0] <= count <= r[1]:
-                return cls(k)
+                return cls(k, count)
 
         return None
+
+    @classmethod
+    def from_label(cls, label: str) -> 'Count':
+        label = label.lower()
+        r = Count.RANGES[label]
+
+        return cls(label, r[2])
 
 
 class Stat:
@@ -166,17 +181,17 @@ class TierStat(Stat):
 class Monster:
     THREAT_STATS = ['ac', 'hp', 'atk', 'dc', 'dmg']
 
-    def __init__(self, base_tier: TierStat, size: int, name: str = None):
+    def __init__(self, base_tier: TierStat, size: Count, name: str = None):
         self._base_tier = base_tier
         self._size = size
         self._name = name
 
         self._tier = self._base_tier.tier
         self._ac = self._base_tier.ac.average
-        self._hp = self._base_tier.hp.from_size(self._size).average
+        self._hp = self._base_tier.hp.from_size(int(self._size)).average
         self._atk = self._base_tier.atk.average
         self._dc = self._base_tier.dc.average
-        self._dmg = self._base_tier.dmg.from_size(self._size).average
+        self._dmg = self._base_tier.dmg.from_size(int(self._size)).average
 
         self._threats = {k: 0 for k in Monster.THREAT_STATS}
 
@@ -353,8 +368,7 @@ class Monster:
 
     @property
     def size_str(self) -> str:
-        size = self._size
-        count = Count.from_int(size)
+        count = self._size
 
         if count is None:
             return 'Uncountable (err)'
@@ -490,6 +504,32 @@ def tier_or_level_arg(arg: str) -> TierStat:
         return tier_arg(arg)
 
 
+def count_label_arg(arg: str) -> Count:
+    arg = arg.lower()
+
+    for label in Count.RANGES:
+        if label.lower() == arg:
+            return Count.from_label(label)
+
+    raise argparse.ArgumentTypeError(f'Unrecognized count label: {arg}')
+
+
+def count_num_arg(arg: str) -> Count:
+    try:
+        count = int(arg)
+        return Count.from_int(count)
+
+    except ValueError as ve:
+        raise argparse.ArgumentTypeError(str(ve))
+
+
+def count_arg(arg: str) -> Count:
+    if arg.isnumeric():
+        return count_num_arg(arg)
+    else:
+        return count_label_arg(arg)
+
+
 def apr_arg(arg: str) -> int:
     if arg.isnumeric():
         return int(arg)
@@ -503,17 +543,19 @@ def apr_arg(arg: str) -> int:
 
 valid_stats_desc = ', '.join(map(lambda e: e.upper(), Monster.THREAT_STATS))
 valid_tiers_desc = ', '.join(map(lambda e: e.tier.name, stats))
+valid_count_desc = ', '.join(map(lambda e: e.upper(), filter(lambda e: Count.RANGES[e][2] is not None, Count.RANGES)))
 
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
     description=(
-        f'STAT values: {valid_stats_desc}\n'
-        f'TIER values: {valid_tiers_desc}\n'
-        f'    (STAT and TIER values are case-insensitive)\n'
+        f'STAT values:  {valid_stats_desc}\n'
+        f'TIER values:  {valid_tiers_desc}\n'
+        f'COUNT values: {valid_count_desc}\n'
+        f'    (STAT, TIER, and COUNT values are case-insensitive)\n'
         ))
 parser.add_argument('tier', metavar='tier|level', type=tier_or_level_arg,
     help="Monster's level (int) or TIER (see above)")
-parser.add_argument('size', metavar='count', type=int,
-    help='Number of monsters to appear together')
+parser.add_argument('size', metavar='count', type=count_arg,
+    help='Number of monsters to appear together (int or COUNT - see above)')
 parser.add_argument('name', type=str, nargs='?',
     help='Monster name')
 parser.add_argument('--good', '-g', metavar='STAT', action='append', default=[],
