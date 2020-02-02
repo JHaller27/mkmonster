@@ -208,9 +208,9 @@ class Monster:
         self._dmg = val
 
     def __str__(self) -> str:
-        vr = u' | '
-        hr = u'-'
-        center_str = u'-+-'
+        vr = u' \u2502 '
+        hr = u'\u2501'
+        center_str = u'%s\u252F%s' % (hr, hr)
 
         txt = ''
 
