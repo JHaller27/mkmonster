@@ -208,7 +208,9 @@ class Monster:
         self._dmg = val
 
     def __str__(self) -> str:
-        vr = ' | '
+        vr = u' | '
+        hr = u'-'
+        center_str = u'-+-'
 
         txt = ''
 
@@ -224,8 +226,10 @@ class Monster:
         label_width = 5
         val_width = 3
 
-        hr_len = (label_width + val_width) * 2 + len(vr)
-        txt += '-' * hr_len
+        hr_side_len = label_width + val_width
+        txt += hr * hr_side_len
+        txt += center_str
+        txt += hr * hr_side_len
         txt += '\n'
 
 
