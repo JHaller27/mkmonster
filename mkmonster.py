@@ -12,7 +12,7 @@ class Count:
         #        followed by default/average
         'solo': (1, 1, 1),
         'pair': (2, 2, 2),
-        'party': (3, 5, 4),
+        'party': (3, 6, 4),
         'gang': (7, 10, 8),
         'mob': (11, 20, 16),
         'army': (21, None, None)
