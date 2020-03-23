@@ -106,7 +106,9 @@ class SizedStat(Stat):
         self.gang = gang
         self.mob = mob
 
-    def from_size(self, size: int) -> QualityStat:
+    def from_size(self, size: Count) -> QualityStat:
+        size = int(size)
+
         if size == 1:
             return self.solo
         elif size == 2:
@@ -573,7 +575,7 @@ parser.add_argument('tier', metavar='tier|level', type=tier_or_level_arg,
     help="Monster's level (int) or TIER (see above)")
 parser.add_argument('size', metavar='count', type=count_arg,
     help='Number of monsters to appear together (int or COUNT - see above)')
-parser.add_argument('name', type=str, nargs='?',
+parser.add_argument('name', type=str,
     help='Monster name')
 parser.add_argument('--good', '-g', metavar='STAT', action='append', default=[],
     help='Boost a STAT to good quality (may be specified multiple times)')
